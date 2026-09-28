@@ -2,7 +2,7 @@
 
 /*
 |--------------------------------------------------------------------------
-| PUNLAAN MOBILE APP API  —  <site>/api/<route>
+| PUNLAAN MOBILE APP API  —  <site>/api/?r=<route>
 |--------------------------------------------------------------------------
 |
 | The app talks to the SAME database as the website, through the SAME
@@ -35,6 +35,7 @@ const API_ROUTES = [
     "categories"            => ["FrontEnd/get_categories.php", false],
     "products"              => ["FrontEnd/get_products.php", false],
     "product"               => ["FrontEnd/get_product.php", false],
+    "product/report"        => ["FrontEnd/report.php", true],
     "product/reviews"       => ["FrontEnd/get_reviews.php", false],
     "shop"                  => ["FrontEnd/get_shop.php", false],
     "search/suggest"        => ["FrontEnd/search_suggest.php", false],
@@ -68,6 +69,7 @@ const API_ROUTES = [
     "profile/update"        => ["MyAccount/customer_php/update_profile.php", true],
     "profile/avatar"        => ["MyAccount/customer_php/upload_avatar.php", true],
     "profile/password"      => ["MyAccount/customer_php/change_password.php", true],
+    "account/delete"        => ["MyAccount/customer_php/delete_account.php", true],
     "orders"                => ["MyAccount/customer_php/get_customer_orders.php", true],
     "orders/update"         => ["MyAccount/customer_php/update_customer_order.php", true],
     "reviews"               => ["MyAccount/customer_php/reviews.php", true],

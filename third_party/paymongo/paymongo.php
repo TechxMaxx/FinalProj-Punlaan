@@ -29,7 +29,6 @@ const PAYMONGO_METHODS = [
     "card" => "card",
 ];
 
-
 function paymongoRequest(string $method, string $path, ?array $body = null): array
 {
     if (!paymongoIsConfigured()) {

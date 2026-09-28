@@ -3,7 +3,7 @@
 The app uses the **same database and the same PHP rules as the website**.
 Every route below runs one of the website's own endpoint files.
 
-- Base URL: `<site>/api/` (emulator + XAMPP: `http://10.0.2.2/punlaan/api/`)
+- Route URL: `<site>/api/?r=<route>` (XAMPP: `http://localhost/punlaan/api/?r=<route>`; Android emulator: `http://10.0.2.2/punlaan/api/?r=<route>`)
 - Send JSON: `Content-Type: application/json`
 - Signed-in routes need the header `Authorization: Bearer <token>`
 - A **401** answer means the sign-in ended: go back to the Sign In screen.
@@ -29,6 +29,13 @@ Every route below runs one of the website's own endpoint files.
 - `product/reviews?product_id=`
 - `shop?vendor_id=`
 - `search/suggest?q=`
+
+## Product reports (signed in)
+
+- GET `product/report` returns the allowed `reasons`.
+- POST `product/report` `{target: "product", product_id, reason, details?}` submits a report.
+  `reason` must match one of the returned reasons. For `"Other"`, `details` must be at least 10 characters.
+  Duplicate open reports are ignored, and each account may submit at most 10 reports per day.
 
 ## Buyer (signed in)
 
@@ -62,6 +69,7 @@ Every route below runs one of the website's own endpoint files.
 - `profile`, `profile/update`, `profile/password`
   - A new email in `profile/update` returns `{verify_required, ticket, email}`. The old token stops working; send the code to `auth/verify`.
 - `profile/avatar` (multipart field: `avatar`)
+- POST `account/delete` `{password}` permanently deletes the signed-in account after checking for unfinished orders, open returns, and seller balances. This revokes all sign-ins and cannot be undone.
 - `saved`, `saved/status?product_id=`, `saved/toggle` {product_id}
 - `notifications`, `notifications/read`, `notifications/read_all`
 - `reviews`, `returns`, `chat`, `apply-seller`
