@@ -1,0 +1,9 @@
+# Seller IDs and permits are private.
+# Admins view them through PunlaanAdmin/view_document.php.
+<IfModule mod_authz_core.c>
+    Require all denied
+</IfModule>
+<IfModule !mod_authz_core.c>
+    Order allow,deny
+    Deny from all
+</IfModule>

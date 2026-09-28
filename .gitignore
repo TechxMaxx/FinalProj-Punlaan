@@ -1,0 +1,30 @@
+# ============================================================
+# Punlaan — files Git must NOT upload
+# ============================================================
+
+# Passwords and keys — each person keeps their own copy.
+# New teammate: copy the matching *.example.php file, remove ".example"
+# from the name, and fill in your own values.
+/app_config.php
+/third_party/mail/mail_config.php
+/third_party/paymongo/paymongo_config.php
+/third_party/google/google_config.php
+/third_party/facebook/facebook_config.php
+
+# Files people upload on the site (IDs, profile photos, return photos)
+# — private, and different on every computer.
+/uploads/**
+!/uploads/**/
+!/uploads/**/index.html
+!/uploads/**/.htaccess
+
+# Logs, backups, editor / system files
+*.log
+*.bak
+*.old
+*.tmp
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/

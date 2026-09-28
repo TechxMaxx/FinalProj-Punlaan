@@ -1,0 +1,47 @@
+# ============================================================
+# Punlaan — site-wide protection
+# ============================================================
+
+# Online: always use https (Google login refuses plain http).
+# Your own computer (localhost / 127.0.0.1) is left on http, and so are
+# the Android emulator (10.0.2.2) and phones on your Wi-Fi (192.168.x.x).
+# If the live site ever shows "too many redirects", delete this block.
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteCond %{HTTP_HOST} !^(localhost|127\.0\.0\.1|\[::1\])(:\d+)?$ [NC]
+    RewriteCond %{HTTP_HOST} !^(10\.|192\.168\.|172\.(1[6-9]|2\d|3[01])\.) [NC]
+    RewriteCond %{HTTPS} off
+    RewriteCond %{HTTP:X-Forwarded-Proto} !https
+    RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+</IfModule>
+
+# Pages are always checked for a newer version (no stale copies after an
+# update). CSS / JS / images still cache — their links carry ?v=… versions.
+<IfModule mod_headers.c>
+    <FilesMatch "\.html?$">
+        Header set Cache-Control "no-cache, must-revalidate"
+    </FilesMatch>
+</IfModule>
+
+# Private files that must never be downloadable:
+# database exports, notes, logs, scripts
+<FilesMatch "\.(sql|md|log|bak|old|ps1|sh|ini|env|txt)$">
+    <IfModule mod_authz_core.c>
+        Require all denied
+    </IfModule>
+    <IfModule !mod_authz_core.c>
+        Order allow,deny
+        Deny from all
+    </IfModule>
+</FilesMatch>
+
+# Settings / key files only define values; block them anyway
+<FilesMatch "^(app_config|paymongo_config|mail_config|google_config|facebook_config)(\.example)?\.php$">
+    <IfModule mod_authz_core.c>
+        Require all denied
+    </IfModule>
+    <IfModule !mod_authz_core.c>
+        Order allow,deny
+        Deny from all
+    </IfModule>
+</FilesMatch>

@@ -1,0 +1,70 @@
+/* SavedPlants.css — Saved Plants (MyAccount/customer/SavedPlants.html)
+ * Same colours and cards as My Orders / Profile.
+ */
+
+.saved__toolbar {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+  gap: 12px; margin-bottom: 18px;
+}
+.saved__count { margin: 0; font-size: 13.5px; color: #5d7b6c; }
+.saved__filters { display: flex; flex-wrap: wrap; gap: 8px; }
+.saved__filter {
+  padding: 7px 15px; border-radius: 999px; border: 1px solid #d4e3d8; background: #fff;
+  font: 600 12.5px/1 inherit; font-family: inherit; color: #4a7060; cursor: pointer;
+}
+.saved__filter:hover { border-color: #52b788; color: #2d6a4f; }
+.saved__filter--active { background: #2d6a4f; border-color: #2d6a4f; color: #fff; }
+
+.saved__grid {
+  display: grid; gap: 18px;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+}
+
+.saved-card {
+  position: relative; display: flex; flex-direction: column;
+  background: #fff; border: 1px solid #e8f0e4; border-radius: 14px; overflow: hidden;
+  transition: box-shadow 0.15s, transform 0.15s;
+}
+.saved-card:hover { box-shadow: 0 8px 24px rgba(26, 60, 46, 0.08); transform: translateY(-1px); }
+
+.saved-card__img { position: relative; display: block; aspect-ratio: 4 / 3; background: #f6faf7; }
+.saved-card__img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.saved-card--out .saved-card__img img { filter: grayscale(0.6); opacity: 0.75; }
+
+.saved-card__stock {
+  position: absolute; top: 10px; left: 10px; padding: 3px 10px; border-radius: 999px;
+  font-size: 11px; font-weight: 700; background: #e7f3ec; color: #2d6a4f;
+}
+.saved-card__stock--out { background: #fbeaea; color: #9b1c1c; }
+
+.saved-card__heart {
+  position: absolute; top: 8px; right: 8px; width: 34px; height: 34px; border-radius: 50%;
+  border: none; background: #fff; color: #c0392b; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+.saved-card__heart:hover { background: #fdf0ef; }
+
+.saved-card__body { padding: 12px 14px 8px; display: flex; flex-direction: column; gap: 3px; flex: 1; }
+.saved-card__name { font-size: 14.5px; font-weight: 700; color: #1a3c2e; text-decoration: none; line-height: 1.3; }
+.saved-card__name:hover { color: #2d6a4f; text-decoration: underline; }
+.saved-card__meta { font-size: 12px; color: #8aa596; }
+.saved-card__seller { font-size: 12.5px; color: #4a7060; }
+.saved-card__price { font-size: 16px; font-weight: 800; color: #1a3c2e; margin-top: 4px; }
+
+.saved-card__actions { display: flex; gap: 8px; padding: 0 14px 14px; }
+.saved-card__actions .btn { flex: 1; justify-content: center; }
+.saved-card__actions .btn:disabled { opacity: 0.55; cursor: not-allowed; }
+
+.saved__empty {
+  grid-column: 1 / -1; text-align: center; padding: 56px 20px;
+  background: #fff; border: 1px dashed #c4dfc9; border-radius: 14px; color: #5d7b6c;
+}
+.saved__empty svg { color: #a8c2b1; margin-bottom: 10px; }
+.saved__empty h2 { margin: 0 0 6px; font-size: 17px; color: #1a3c2e; }
+.saved__empty p { margin: 0 0 18px; }
+
+@media (max-width: 520px) {
+  .saved__grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 12px; }
+  .saved-card__actions { flex-direction: column; }
+}

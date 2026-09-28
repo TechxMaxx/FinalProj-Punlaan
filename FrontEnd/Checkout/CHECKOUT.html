@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes"
+  >
+
+  <title>Checkout · Punlaan</title>
+
+
+  <!-- =========================
+       FONT AWESOME
+  ========================== -->
+
+  <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    rel="stylesheet"
+  >
+
+
+  <!-- =========================
+       GOOGLE FONT
+  ========================== -->
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:wght@300;400;500;600;700&family=Public+Sans:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"
+  >
+
+
+  <!-- =========================
+       CHECKOUT CSS
+  ========================== -->
+
+  <link
+    rel="stylesheet"
+    href="CHECKOUT.css?v=20260927d"
+  >
+
+  <!-- Address book (choose / add delivery address) -->
+  <link
+    rel="stylesheet"
+    href="../account/address-book.css?v=20260927d"
+  >
+
+</head>
+
+
+<body>
+
+
+  <!-- =========================
+       HEADER
+  ========================== -->
+
+  <header>
+
+    <div class="header-left">
+
+      <a href="../HOME.html" class="logo-mark" aria-label="Punlaan home">
+
+        <img
+          src="../Tree icon.png"
+          alt="Punlaan logo"
+        >
+
+      </a>
+
+
+      <nav class="primary">
+
+        <a href="../HOME.html">
+          <span>Home</span>
+        </a>
+
+        <a href="../MARKETPLACE.html">
+          <span>Marketplace</span>
+        </a>
+
+        <a href="../ABOUTUS.html">
+          <span>About Us</span>
+        </a>
+
+      </nav>
+
+    </div>
+
+
+    <!-- =========================
+         SEARCH
+    ========================== -->
+
+    <form
+      class="header-search"
+      action="../MARKETPLACE.html"
+      method="GET"
+    >
+
+      <input
+        type="text"
+        name="q"
+        placeholder="Search ..."
+        autocomplete="off"
+      >
+
+      <button type="submit">
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </button>
+
+    </form>
+
+
+    <!-- =========================
+         SECONDARY NAV
+    ========================== -->
+
+    <nav class="secondary">
+
+
+      <!-- CART -->
+
+      <a
+        href="CART.html"
+        class="icon-btn active"
+        aria-label="Shopping Cart"
+      >
+
+        <i
+          class="fa-solid fa-cart-shopping"
+          style="font-size: 1.2rem;"
+        ></i>
+
+        <span
+          class="badge-count"
+          id="cartBadge"
+          style="display: none;"
+        >
+          0
+        </span>
+
+      </a>
+
+
+      <!-- SAVED PLANTS -->
+
+      <a
+        href="../../MyAccount/customer/SavedPlants.html"
+        class="icon-btn"
+        aria-label="Saved Plants"
+      >
+
+        <i
+          class="fa-regular fa-heart"
+          style="font-size: 1.2rem;"
+        ></i>
+
+      </a>
+
+
+      <!-- NOTIFICATIONS -->
+
+      <a
+        href="../NOTIFICATION.html"
+        class="icon-btn"
+        aria-label="Notifications"
+      >
+
+        <i
+          class="fa-regular fa-bell"
+          style="font-size: 1.2rem;"
+        ></i>
+
+      </a>
+
+
+      <!-- PROFILE -->
+
+      <a
+        href="../../MyAccount/customer/Profile.html"
+        class="profile-container"
+        id="profileNav"
+        aria-label="User Profile"
+      >
+
+        <div class="profile-avatar">
+
+          <svg
+            width="32"
+            height="32"
+            viewBox="0 0 32 32"
+            fill="none"
+          >
+
+            <circle
+              cx="16"
+              cy="16"
+              r="16"
+              fill="#28512F"
+            />
+
+            <path
+              d="M16 15a4 4 0 100-8 4 4 0 000 8z"
+              fill="#FFFFFF"
+            />
+
+            <path
+              d="M16 18c-4.4 0-8 2.3-8 5v1h16v-1c0-2.7-3.6-5-8-5z"
+              fill="#FFFFFF"
+            />
+
+          </svg>
+
+        </div>
+
+
+        <!-- Logged-in user name -->
+
+        <span id="usernameDisplay">
+          username
+        </span>
+
+      </a>
+
+    </nav>
+
+  </header>
+
+
+  <!-- =========================
+       MAIN CONTENT
+  ========================== -->
+
+  <main class="container py-4 main-content">
+
+    <div class="checkout-layout">
+
+      <!-- =========================
+           LEFT: ADDRESS + ITEMS
+      ========================== -->
+
+      <div class="checkout-main">
+
+        <div class="section-card mb-4">
+
+          <div class="delivery-head">
+
+            <div class="section-label">
+              <i class="fa-solid fa-location-dot"></i>
+              DELIVERY ADDRESS
+            </div>
+
+            <button
+              type="button"
+              class="delivery-change"
+              id="changeAddressBtn"
+              hidden
+            >
+              Change
+            </button>
+
+          </div>
+
+
+          <!-- Filled by CHECKOUT.js from the address book -->
+          <div
+            class="delivery-body"
+            id="checkoutDelivery"
+          >
+            <span class="text-muted">Loading...</span>
+          </div>
+
+        </div>
+
+
+        <div
+          id="checkoutOrderContainer"
+        ></div>
+
+      </div>
+
+
+      <!-- =========================
+           RIGHT: PAYMENT + SUMMARY
+      ========================== -->
+
+      <aside class="checkout-side">
+
+        <div class="section-card pay-card">
+
+          <div class="section-label">
+            <i class="fa-solid fa-wallet"></i>
+            PAYMENT METHOD
+          </div>
+
+          <div class="pay-options" role="radiogroup" aria-label="Payment method">
+
+            <label class="pay-option">
+              <input type="radio" name="payment_method" value="cod" checked>
+              <span class="pay-option__icon" style="background:#2e7d32"><i class="fa-solid fa-money-bill-wave"></i></span>
+              <span class="pay-option__text">
+                <strong>Cash on Delivery</strong>
+                <small>Pay the rider when your plants arrive</small>
+              </span>
+            </label>
+
+            <label class="pay-option">
+              <input type="radio" name="payment_method" value="gcash">
+              <span class="pay-option__icon" style="background:#297bfa"><img src="img/gcash.png" alt=""></span>
+              <span class="pay-option__text">
+                <strong>GCash</strong>
+                <small>Pay with your GCash wallet</small>
+              </span>
+            </label>
+
+            <label class="pay-option">
+              <input type="radio" name="payment_method" value="maya">
+              <span class="pay-option__icon" style="background:#000"><img src="img/maya.jpg" alt=""></span>
+              <span class="pay-option__text">
+                <strong>Maya</strong>
+                <small>Pay with your Maya wallet</small>
+              </span>
+            </label>
+
+            <label class="pay-option">
+              <input type="radio" name="payment_method" value="card">
+              <span class="pay-option__icon" style="background:#1a1f71"><i class="fa-regular fa-credit-card"></i></span>
+              <span class="pay-option__text">
+                <strong>Credit / Debit Card</strong>
+                <small class="pay-option__brands">
+                  <i class="fa-brands fa-cc-visa"></i>
+                  <i class="fa-brands fa-cc-mastercard"></i>
+                  <i class="fa-brands fa-cc-jcb"></i>
+                </small>
+              </span>
+            </label>
+
+          </div>
+
+          <p class="pay-note" id="payNote" hidden>
+            <i class="fa-solid fa-circle-info"></i>
+            You'll pay on the next page after placing your order.
+          </p>
+
+        </div>
+
+
+        <div class="section-card summary-card">
+
+          <div class="section-label">
+            <i class="fa-solid fa-receipt"></i>
+            ORDER SUMMARY
+          </div>
+
+          <div class="summary-row">
+            <span>
+              Subtotal (<span id="checkoutItemCount">0</span>
+              item<span id="checkoutItemPlural">s</span>)
+            </span>
+            <span id="checkoutSubtotal">₱0.00</span>
+          </div>
+
+          <div class="summary-row">
+            <span>Shipping</span>
+            <span id="checkoutShipping">—</span>
+          </div>
+
+          <!-- One line per seller: "From Imus, Cavite · 12.4 km" -->
+          <div class="shipping-breakdown" id="shippingBreakdown"></div>
+
+          <div class="summary-row summary-row--total">
+            <span>Order Total</span>
+            <span class="total-amount" id="checkoutOrderTotal">₱0.00</span>
+          </div>
+
+          <p class="shipping-note text-muted">
+            Shipping is per seller, based on the size of the items and how far the shop is from you.
+            Estimated delivery: 1–4 calendar days after your order is placed.
+          </p>
+
+          <button
+            id="placeOrderBtn"
+            class="btn btn-checkout btn-lg w-100"
+          >
+            Place Order
+          </button>
+
+          <p class="place-order-error" id="placeOrderError" role="alert" hidden></p>
+
+          <p class="summary-terms">
+            By placing your order you agree to Punlaan's
+            <a href="../TERMS.html">Terms of Service</a>.
+          </p>
+
+        </div>
+
+      </aside>
+
+    </div>
+
+  </main>
+
+
+  <!-- =========================
+       FOOTER
+  ========================== -->
+
+  <footer class="site-footer">
+
+    <div class="footer-grid">
+
+
+      <!-- BRAND -->
+
+      <div class="footer-brand">
+
+        <img
+          src="../Footer logo.png"
+          alt="Punlaan, The Green Market"
+        >
+
+      </div>
+
+
+      <!-- FOLLOW -->
+
+      <div class="footer-col">
+
+        <h4>Follow us</h4>
+
+        <a href="#">Facebook</a>
+
+      </div>
+
+
+      <!-- QUICK LINKS -->
+
+      <div class="footer-col">
+
+        <h4>Quick Links</h4>
+
+        <a href="../HOME.html">Home</a>
+        <a href="../MARKETPLACE.html">Marketplace</a>
+        <a href="../ABOUTUS.html">About Us</a>
+                <a href="../PRIVACY.html">Privacy Policy</a>
+                <a href="../TERMS.html">Terms of Service</a>
+
+      </div>
+
+
+      <!-- CONTACT -->
+
+      <div class="footer-col">
+
+        <h4>Contact Info</h4>
+
+        <a href="#">Location</a>
+        <a href="#">Email</a>
+        <a href="#">Contact number</a>
+
+      </div>
+
+
+      <!-- QUOTE -->
+
+      <div class="footer-col footer-quote">
+
+        <p>
+          "Punlaan's overall goal is to help make buying and selling plants and saplings a much more convenient and accessible marketplace by giving these people a website to give them a much easier access to sell and buy."
+        </p>
+
+      </div>
+
+    </div>
+
+  </footer>
+
+
+  <!-- =========================
+       CHECKOUT JAVASCRIPT
+  ========================== -->
+
+  <script src="../../third_party/psgc/psgc.js?v=20260927d"></script>
+  <script src="../account/address-book.js?v=20260927d"></script>
+  <script src="CHECKOUT.js?v=20260927d"></script>
+
+  <!-- Cart item count on the header cart icon -->
+  <script src="../cart-badge.js?v=20260927d"></script>
+
+  <!-- Shared header: profile photo, mobile menu, search suggestions -->
+  <script src="../site-header.js?v=20260927d"></script>
+</body>
+
+</html>

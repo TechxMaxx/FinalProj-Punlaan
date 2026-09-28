@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Back to Punlaan</title>
+  <meta name="robots" content="noindex">
+  <style>
+    :root { --green: #28512F; --bg: #f3f6f3; --text: #1a1a1a; --muted: #5b6b61; --card: #fff; }
+    @media (prefers-color-scheme: dark) {
+      :root { --bg: #111814; --text: #e8efe9; --muted: #a7b6ac; --card: #1b241e; }
+    }
+    body { margin: 0; min-height: 100vh; display: grid; place-items: center; background: var(--bg);
+           color: var(--text); font-family: Arial, Helvetica, sans-serif; padding: 16px; box-sizing: border-box; }
+    .card { background: var(--card); border-radius: 14px; padding: 28px 22px; max-width: 380px; width: 100%; text-align: center; }
+    h1 { font-size: 20px; margin: 10px 0 8px; }
+    p { color: var(--muted); line-height: 1.5; margin: 0 0 20px; }
+    a.btn { display: inline-block; background: var(--green); color: #fff; text-decoration: none;
+            padding: 12px 22px; border-radius: 999px; font-weight: 700; }
+    .logo { font-size: 34px; }
+  </style>
+</head>
+<body>
+  <!--
+    PayMongo sends buyers who paid in the MOBILE APP here
+    (paymongo_checkout.php with return_to=app). This page reopens the
+    Punlaan app, which then checks the payment by itself.
+  -->
+  <div class="card">
+    <div class="logo">🌿</div>
+    <h1 id="title">Returning to the Punlaan app…</h1>
+    <p id="text">If the app doesn't open by itself, tap the button.</p>
+    <a class="btn" id="open" href="#">Open the Punlaan app</a>
+  </div>
+  <script>
+    (function () {
+      var params = new URLSearchParams(location.search);
+      var orderId = (params.get('order_id') || '').replace(/\D/g, '');
+      var status = params.get('paymongo') === 'cancelled' ? 'cancelled' : 'done';
+
+      if (status === 'cancelled') {
+        document.getElementById('title').textContent = 'Payment not finished';
+        document.getElementById('text').textContent =
+          'You can try again from the app (My Orders → Pay now).';
+      }
+
+      // Android Chrome: intent:// opens the installed app (package com.punlaan.app)
+      var query = 'order_id=' + orderId + '&status=' + status;
+      var appLink = /Android/i.test(navigator.userAgent)
+        ? 'intent://payment?' + query + '#Intent;scheme=punlaan;package=com.punlaan.app;end'
+        : 'punlaan://payment?' + query;
+
+      document.getElementById('open').href = appLink;
+      setTimeout(function () { location.href = appLink; }, 300);
+    })();
+  </script>
+</body>
+</html>

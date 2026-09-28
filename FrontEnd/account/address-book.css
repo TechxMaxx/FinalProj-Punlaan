@@ -1,0 +1,437 @@
+/* address-book.css — Address form / picker used on Profile and Checkout.
+   Self-contained (ab- prefix) so it looks the same on both pages. */
+
+.ab-no-scroll { overflow: hidden; }
+
+/* ============ MODAL ============ */
+.ab-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 3000;
+  background: rgba(15, 30, 20, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  animation: ab-fade 0.15s ease-out;
+}
+
+@keyframes ab-fade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes ab-rise { from { transform: translateY(12px); opacity: 0; } to { transform: none; opacity: 1; } }
+
+.ab-modal {
+  width: 100%;
+  max-width: 620px;
+  max-height: calc(100vh - 32px);
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.25);
+  font-family: inherit;
+  color: #1a3c2e;
+  animation: ab-rise 0.2s ease-out;
+}
+
+.ab-modal__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 22px 14px;
+  border-bottom: 1px solid #e8f0e4;
+}
+
+.ab-modal__title {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 700;
+  color: #1a3c2e;
+}
+
+.ab-modal__body {
+  padding: 18px 22px;
+  overflow-y: auto;
+}
+
+.ab-modal__footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 14px 22px 18px;
+  border-top: 1px solid #e8f0e4;
+}
+
+.ab-icon-btn {
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  border: none;
+  background: transparent;
+  color: #4a7060;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.ab-icon-btn:hover { background: #f0f6f2; }
+
+/* ============ FORM ============ */
+.ab-form { display: flex; flex-direction: column; gap: 14px; margin: 0; }
+
+.ab-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.ab-row--street { grid-template-columns: 1fr 140px; }
+
+.ab-field {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  min-width: 0;
+  margin: 0;
+}
+
+.ab-field[hidden] { display: none; }
+
+.ab-label {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #3d5c4a;
+}
+
+.ab-optional { font-weight: 400; color: #8aa596; }
+
+.ab-input {
+  width: 100%;
+  height: 40px;
+  padding: 0 12px;
+  border: 1.5px solid #d4e3d8;
+  border-radius: 9px;
+  background: #fbfdfc;
+  font: inherit;
+  font-size: 14px;
+  color: #1a3c2e;
+  outline: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.ab-input:focus {
+  border-color: #52b788;
+  box-shadow: 0 0 0 3px rgba(82, 183, 136, 0.15);
+  background: #fff;
+}
+
+.ab-input:disabled { background: #f3f6f4; color: #8aa596; cursor: not-allowed; }
+
+.ab-input::placeholder { color: #a9c1b3; }
+
+.ab-labels { border: none; padding: 0; }
+
+.ab-chips { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 2px; }
+
+.ab-chip { position: relative; cursor: pointer; }
+
+.ab-chip input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+
+.ab-chip span {
+  display: inline-block;
+  padding: 6px 16px;
+  border: 1.5px solid #d4e3d8;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #4a7060;
+  transition: all 0.15s;
+}
+
+.ab-chip input:checked + span {
+  border-color: #2d6a4f;
+  background: #2d6a4f;
+  color: #fff;
+}
+
+.ab-chip input:focus-visible + span { box-shadow: 0 0 0 3px rgba(82, 183, 136, 0.35); }
+
+.ab-check {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13.5px;
+  color: #3d5c4a;
+  cursor: pointer;
+}
+
+.ab-check input { width: 17px; height: 17px; accent-color: #2d6a4f; }
+
+.ab-note {
+  margin: 0;
+  padding: 10px 12px;
+  border-radius: 9px;
+  background: #fff8e6;
+  border: 1px solid #f5dfa6;
+  font-size: 13px;
+  color: #7a5a00;
+}
+
+.ab-error {
+  padding: 10px 12px;
+  border-radius: 9px;
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  font-size: 13px;
+  color: #b91c1c;
+  margin-bottom: 12px;
+}
+
+.ab-form .ab-error { margin-bottom: 0; }
+
+.ab-error[hidden] { display: none; }
+
+/* ============ BUTTONS ============ */
+.ab-btn {
+  height: 40px;
+  padding: 0 18px;
+  border-radius: 10px;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.ab-btn--primary {
+  border: none;
+  background: #2d6a4f;
+  color: #fff;
+}
+
+.ab-btn--primary:hover { background: #245540; }
+
+.ab-btn--primary:disabled { opacity: 0.6; cursor: wait; }
+
+.ab-btn--ghost {
+  border: 1.5px solid #d4e3d8;
+  background: #fff;
+  color: #3d5c4a;
+}
+
+.ab-btn--ghost:hover { border-color: #b2ccba; background: #f6faf7; }
+
+.ab-btn:focus-visible,
+.ab-link:focus-visible,
+.ab-add:focus-visible {
+  outline: 2px solid #52b788;
+  outline-offset: 2px;
+}
+
+.ab-link {
+  border: none;
+  background: none;
+  padding: 4px 6px;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  color: #2d6a4f;
+  cursor: pointer;
+  border-radius: 6px;
+}
+
+.ab-link:hover { background: #f0f6f2; }
+
+.ab-link--danger { color: #b91c1c; }
+
+.ab-link--danger:hover { background: #fef2f2; }
+
+.ab-add {
+  width: 100%;
+  margin-top: 12px;
+  height: 44px;
+  border: 1.5px dashed #b2ccba;
+  border-radius: 12px;
+  background: #fbfdfc;
+  color: #2d6a4f;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  cursor: pointer;
+}
+
+.ab-add:hover { background: #f0f6f2; border-color: #52b788; }
+
+/* ============ ADDRESS CARDS ============ */
+.ab-list { display: flex; flex-direction: column; gap: 10px; }
+
+.ab-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 14px 16px;
+  border: 1.5px solid #e8f0e4;
+  border-radius: 12px;
+  background: #fff;
+}
+
+.ab-card--selectable { cursor: pointer; transition: border-color 0.15s, background 0.15s; }
+
+.ab-card--selectable:hover { border-color: #b2ccba; }
+
+.ab-card--selectable:has(input:checked) { border-color: #2d6a4f; background: #f6faf7; }
+
+.ab-card--selectable input[type="radio"] {
+  width: 18px;
+  height: 18px;
+  margin-top: 2px;
+  accent-color: #2d6a4f;
+  flex-shrink: 0;
+}
+
+.ab-card__main { flex: 1; min-width: 0; }
+
+.ab-card__top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 12px;
+}
+
+.ab-card__name { font-size: 14.5px; font-weight: 700; color: #1a3c2e; }
+
+.ab-card__phone {
+  font-size: 13px;
+  color: #4a7060;
+  font-variant-numeric: tabular-nums;
+}
+
+.ab-card__address {
+  margin: 4px 0 8px;
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: #3d5c4a;
+}
+
+.ab-card__tags { display: flex; gap: 6px; flex-wrap: wrap; }
+
+.ab-card__actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+  flex-shrink: 0;
+}
+
+.ab-tag {
+  padding: 2px 9px;
+  border-radius: 999px;
+  border: 1px solid #d4e3d8;
+  font-size: 11.5px;
+  font-weight: 600;
+  color: #4a7060;
+}
+
+.ab-tag--default { border-color: #2d6a4f; background: #2d6a4f; color: #fff; }
+
+.ab-tag--warn { border-color: #f5dfa6; background: #fff8e6; color: #7a5a00; }
+
+.ab-muted { margin: 0; font-size: 13.5px; color: #8aa596; }
+
+.ab-tag--pin { border-color: #b7e4c7; background: #f0faf3; color: #1b4332; }
+
+/* ============ MAP PIN ============ */
+.ab-pin {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px;
+  border: 1.5px dashed #d4e3d8;
+  border-radius: 12px;
+  background: #fbfdfc;
+}
+
+.ab-pin__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.ab-pin__actions { display: flex; gap: 8px; flex-wrap: wrap; }
+
+.ab-pin__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 32px;
+  padding: 0 12px;
+  border: none;
+  border-radius: 8px;
+  background: #2d6a4f;
+  color: #fff;
+  font: inherit;
+  font-size: 12.5px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.ab-pin__btn:hover { background: #1b4332; }
+
+.ab-pin__btn:disabled { opacity: 0.6; cursor: wait; }
+
+.ab-pin__btn--ghost { background: #fff; color: #2d6a4f; border: 1.5px solid #d4e3d8; }
+
+.ab-pin__btn--ghost:hover { background: #f0f6f2; }
+
+.ab-pin__btn:focus-visible { outline: 2px solid #52b788; outline-offset: 2px; }
+
+.ab-pin__map {
+  height: 220px;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid #e8f0e4;
+}
+
+.ab-pin__map[hidden] { display: none; }
+
+.ab-map-pin { background: none; border: none; }
+
+.ab-pin__status { margin: 0; font-size: 12.5px; color: #4a7060; line-height: 1.45; }
+
+.ab-pin__status[hidden] { display: none; }
+
+.ab-pin__status--ok { color: #1b4332; }
+
+.ab-pin__status--warn { color: #8a5a00; }
+
+.ab-pin__status--error { color: #b91c1c; }
+
+/* ============ RESPONSIVE ============ */
+@media (max-width: 560px) {
+  .ab-overlay { padding: 0; align-items: flex-end; }
+
+  .ab-modal { max-height: 92vh; border-radius: 16px 16px 0 0; }
+
+  .ab-row,
+  .ab-row--street { grid-template-columns: 1fr; }
+
+  .ab-modal__footer .ab-btn { flex: 1; }
+
+  .ab-card { flex-wrap: wrap; }
+
+  .ab-card__actions { flex-direction: row; width: 100%; justify-content: flex-end; }
+}
+
+/* "Update address to match the pin" / "Move the pin here" */
+.ab-pin__fix {
+  margin-left: 4px; padding: 3px 10px; border-radius: 999px;
+  border: 1px solid currentColor; background: #fff; color: inherit;
+  font: inherit; font-weight: 700; font-size: 12px; cursor: pointer;
+}
+.ab-pin__fix:hover { background: #fff7e6; }

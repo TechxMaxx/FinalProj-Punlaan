@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+
+  <title>CART</title>
+
+  <link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+  />
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600&family=Public+Sans:wght@300;400;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+    rel="stylesheet"
+  />
+
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+  />
+
+  <link rel="stylesheet" href="CART.css?v=20260927d" />
+
+</head>
+
+
+<body>
+
+
+  <!-- ==================== HEADER ==================== -->
+
+  <header>
+
+    <div class="header-left">
+
+      <a href="../HOME.html" class="logo-mark" aria-label="Punlaan home">
+
+        <img
+          src="../Tree icon.png"
+          alt="Punlaan logo"
+        />
+
+      </a>
+
+
+      <nav class="primary">
+
+        <a href="../HOME.html">
+          <span>Home</span>
+        </a>
+
+        <a href="../MARKETPLACE.html">
+          <span>Marketplace</span>
+        </a>
+
+        <a href="../ABOUTUS.html">
+          <span>About Us</span>
+        </a>
+
+      </nav>
+
+    </div>
+
+
+    <!-- ==================== SEARCH ==================== -->
+
+    <form
+      class="header-search"
+      action="../MARKETPLACE.html"
+      method="GET"
+    >
+
+      <input
+        type="text"
+        name="q"
+        placeholder="Search ..."
+        autocomplete="off"
+      >
+
+      <button type="submit">
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </button>
+
+    </form>
+
+
+    <!-- ==================== SECONDARY NAV ==================== -->
+
+    <nav class="secondary">
+
+
+      <!-- CART -->
+
+      <a
+        href="CART.html"
+        class="icon-btn active"
+        aria-label="Shopping Cart"
+      >
+
+        <i
+          class="fa-solid fa-cart-shopping"
+          style="font-size: 1.2rem;"
+        ></i>
+
+        <span
+          class="badge-count"
+          id="cartBadge"
+          style="display: none;"
+        >
+          0
+        </span>
+
+      </a>
+
+
+      <!-- SAVED PLANTS -->
+
+      <a
+        href="../../MyAccount/customer/SavedPlants.html"
+        class="icon-btn"
+        aria-label="Saved Plants"
+      >
+
+        <i
+          class="fa-regular fa-heart"
+          style="font-size: 1.2rem;"
+        ></i>
+
+      </a>
+
+
+      <!-- NOTIFICATIONS -->
+
+      <a
+        href="../NOTIFICATION.html"
+        class="icon-btn"
+        aria-label="Notifications"
+      >
+
+        <i
+          class="fa-regular fa-bell"
+          style="font-size: 1.2rem;"
+        ></i>
+
+      </a>
+
+
+      <!-- PROFILE -->
+
+      <a
+        href="../../MyAccount/customer/Profile.html"
+        class="profile-container"
+        id="profileNav"
+        aria-label="User Profile"
+      >
+
+        <div class="profile-avatar">
+
+          <svg
+            width="32"
+            height="32"
+            viewBox="0 0 32 32"
+            fill="none"
+          >
+
+            <circle
+              cx="16"
+              cy="16"
+              r="16"
+              fill="#28512F"
+            />
+
+            <path
+              d="M16 15a4 4 0 100-8 4 4 0 000 8z"
+              fill="#FFFFFF"
+            />
+
+            <path
+              d="M16 18c-4.4 0-8 2.3-8 5v1h16v-1c0-2.7-3.6-5-8-5z"
+              fill="#FFFFFF"
+            />
+
+          </svg>
+
+        </div>
+
+
+        <!-- Logged-in user's name -->
+
+        <span id="usernameDisplay">
+          username
+        </span>
+
+      </a>
+
+    </nav>
+
+  </header>
+
+
+  <!-- ==================== MAIN ==================== -->
+
+  <main class="main-content">
+
+
+    <!-- ==================== TABLE HEADER ==================== -->
+
+    <div
+      class="cart-card header-card"
+      id="tableHeader"
+    >
+
+      <div class="cart-table-header">
+
+        <div class="col-product">
+          Product
+        </div>
+
+        <div class="col-price">
+          Unit Price
+        </div>
+
+        <div class="col-qty">
+          Quantity
+        </div>
+
+        <div class="col-total">
+          Total Price
+        </div>
+
+        <div class="col-action">
+          Actions
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- ==================== CART ==================== -->
+
+    <div id="cartContainer"></div>
+
+
+    <!-- ==================== CHECKOUT ==================== -->
+
+    <div
+      class="checkout-section"
+      id="checkoutSection"
+      style="display: none;"
+    >
+
+      <div class="checkout-inner">
+
+
+        <!-- SELECTION -->
+
+        <div class="selection-controls">
+
+          <div class="select-all-wrapper">
+
+            <input
+              class="custom-checkbox"
+              type="checkbox"
+              id="selectAll"
+            />
+
+            <label
+              class="form-check-label"
+              for="selectAll"
+            >
+              Select All
+            </label>
+
+          </div>
+
+
+          <button
+            id="deleteSelectedBtn"
+            class="delete-btn"
+          >
+
+            <i class="bi bi-trash me-1"></i>
+
+            Delete Selected
+
+          </button>
+
+        </div>
+
+
+        <!-- TOTAL + CHECKOUT -->
+
+        <div class="checkout-controls">
+
+          <div class="checkout-total">
+
+            <span class="total-label-text">
+              Total:
+            </span>
+
+            <span class="total-label-text">
+
+              (
+              <span id="bottomItemCount">
+                0
+              </span>
+
+              item<span id="bottomItemPlural">
+                s
+              </span>
+              )
+
+            </span>
+
+            <span
+              id="bottomTotal"
+              class="total-amount-display"
+            >
+              ₱0
+            </span>
+
+          </div>
+
+
+          <button
+            id="checkoutBtn"
+            class="btn-checkout"
+          >
+
+            <i class="bi bi-lock me-2"></i>
+
+            CHECKOUT
+
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+
+
+  <!-- ==================== FOOTER ==================== -->
+
+  <footer>
+
+    <div class="footer-grid">
+
+
+      <div class="footer-brand">
+
+        <img
+          src="../Footer logo.png"
+          alt="Punlaan, The Green Market"
+        />
+
+      </div>
+
+
+      <div class="footer-col">
+
+        <h4>Follow us</h4>
+
+        <a href="#">Facebook</a>
+
+      </div>
+
+
+      <div class="footer-col">
+
+        <h4>Quick Links</h4>
+
+        <a href="../HOME.html">Home</a>
+        <a href="../MARKETPLACE.html">Marketplace</a>
+        <a href="../ABOUTUS.html">About Us</a>
+                <a href="../PRIVACY.html">Privacy Policy</a>
+                <a href="../TERMS.html">Terms of Service</a>
+
+      </div>
+
+
+      <div class="footer-col">
+
+        <h4>Contact Info</h4>
+
+        <a href="#">Location</a>
+        <a href="#">Email</a>
+        <a href="#">Contact number</a>
+
+      </div>
+
+
+      <div class="footer-col footer-quote">
+
+        <p>
+          "Punlaan's overall goal is to help make buying
+          and selling plants and saplings a much more
+          convenient and accessible marketplace by giving
+          these people a website to give them a much easier
+          access to sell and buy."
+        </p>
+
+      </div>
+
+    </div>
+
+  </footer>
+
+
+  <!-- ==================== JAVASCRIPT ==================== -->
+
+  <script src="CART.js?v=20260927d"></script>
+
+  <!-- Cart item count on the header cart icon -->
+  <script src="../cart-badge.js?v=20260927d"></script>
+
+  <!-- Shared header: profile photo, mobile menu, search suggestions -->
+  <script src="../site-header.js?v=20260927d"></script>
+</body>
+
+</html>

@@ -1,0 +1,65 @@
+/* ============ SALES & PAYOUTS ============ */
+
+.vsales { display: flex; flex-direction: column; gap: 18px; }
+
+.vsales__balances {
+  display: grid;
+  grid-template-columns: 1.4fr repeat(3, 1fr);
+  gap: 14px;
+}
+.vsales__balance {
+  background: #fff;
+  border: 1px solid #e8f0e4;
+  border-radius: 14px;
+  padding: 18px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.vsales__balance--main { background: linear-gradient(135deg, #1b4332, #2d6a4f); color: #fff; border: none; }
+.vsales__balance--main .vsales__label,
+.vsales__balance--main .vsales__small { color: #d8f3dc; }
+.vsales__balance--main .btn { align-self: flex-start; background: #fff; color: #1b4332; margin-top: 6px; }
+.vsales__balance--main .btn:disabled { opacity: 0.55; cursor: not-allowed; }
+.vsales__label { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; color: #74a98c; }
+.vsales__amount { font-size: 24px; font-weight: 800; }
+.vsales__small { font-size: 12px; color: #8aa596; line-height: 1.4; }
+
+.vsales__card { background: #fff; border: 1px solid #e8f0e4; border-radius: 14px; padding: 18px 20px; min-width: 0; }
+.vsales__card-head { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 12px; }
+.vsales__card-head h2 { font-size: 16px; font-weight: 800; color: #1a3c2e; margin: 0; }
+
+.vsales__kpis { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin-bottom: 14px; }
+.vsales__kpis div { background: #f6faf6; border-radius: 10px; padding: 10px 12px; font-size: 12px; color: #6b7c72; }
+.vsales__kpis span { display: block; font-size: 18px; font-weight: 800; color: #1a2e22; }
+
+.vsales__chart { position: relative; overflow-x: auto; }
+.vsales__chart svg { width: 100%; max-width: 860px; min-width: 520px; height: auto; display: block; margin: 0 auto; }
+.vsales__chart-empty {
+  position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+  color: #8aa596; font-size: 13.5px; pointer-events: none;
+}
+
+.vsales__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+
+.vsales__table-wrap { overflow-x: auto; }
+.vsales__table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+.vsales__table th { text-align: left; font-size: 11px; text-transform: uppercase; color: #74a98c; padding: 8px 6px; border-bottom: 1px solid #e8f0e4; }
+.vsales__table td { padding: 10px 6px; border-bottom: 1px solid #f2f6f2; vertical-align: middle; }
+.vsales__product { display: flex; align-items: center; gap: 10px; }
+.vsales__product img { width: 36px; height: 36px; border-radius: 8px; object-fit: cover; }
+
+.vsales__rows div { display: flex; justify-content: space-between; gap: 12px; padding: 7px 0; font-size: 14px; border-bottom: 1px dashed #edf2ee; }
+.vsales__rows-total { font-weight: 800; color: #1a3c2e; border-bottom: none !important; }
+.vsales__muted { color: #8aa596; font-size: 12.5px !important; border-bottom: none !important; }
+.vsales__note { font-size: 12.5px; color: #8aa596; line-height: 1.5; margin: 10px 0 0; }
+
+@media (max-width: 1000px) {
+  .vsales__balances { grid-template-columns: 1fr 1fr; }
+  .vsales__grid { grid-template-columns: 1fr; }
+  .vsales__kpis { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 560px) {
+  .vsales__balances { grid-template-columns: 1fr; }
+  .vsales__kpis { grid-template-columns: 1fr 1fr; }
+}

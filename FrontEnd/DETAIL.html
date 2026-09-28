@@ -1,0 +1,1290 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Product Detail — Punlaan</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:wght@300;400;500;600;700&family=Public+Sans:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+  />
+
+  <style>
+    :root {
+      --green: #28512F;
+      --green-light: #3B7247;
+      --footer-bg: #1A2E1F;
+      --card-black: #0F0F0F;
+      --gray-text: #B0B0B0;
+      --white: #FFFFFF;
+      --max: 1200px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      font-family: 'Public Sans', sans-serif;
+      background: #fff;
+      color: #1a1a1a;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      padding-right: 0 !important;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    .wordmark {
+      font-family: 'Fraunces', serif;
+      margin: 0;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+      height: auto;
+    }
+
+    p {
+      margin: 0;
+    }
+
+    /* =========================
+       HEADER
+    ========================= */
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 56px;
+      background: var(--white);
+      border-bottom: 1px solid #eee;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      width: 100%;
+      box-shadow:
+        0 4px 6px -1px rgba(0, 0, 0, 0.1),
+        0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 50px;
+      flex: 1;
+    }
+
+    .logo-mark img {
+      height: 48px;
+      width: auto;
+    }
+
+    nav.primary {
+      display: flex;
+      gap: 34px;
+    }
+
+    nav.primary a {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #1a1a1a;
+      transition: color 0.2s ease;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      padding-bottom: 6px;
+      border-bottom: 3px solid transparent;
+    }
+
+    nav.primary a.active,
+    nav.primary a:hover {
+      color: var(--green);
+      border-bottom: 3px solid var(--green);
+    }
+
+    .header-search {
+      flex: 1;
+      max-width: 550px;
+      margin: 0 30px;
+      background: #f5f5f5;
+      border-radius: 999px;
+      display: flex;
+      align-items: center;
+      padding: 4px;
+      border: 1px solid #e0e0e0;
+    }
+
+    .header-search input {
+      flex: 1;
+      border: none;
+      background: transparent;
+      padding: 6px 16px;
+      font-family: 'Public Sans', sans-serif;
+      font-size: 0.9rem;
+      color: #333;
+      outline: none;
+    }
+
+    .header-search button {
+      background: var(--green);
+      color: var(--white);
+      border: none;
+      border-radius: 999px;
+      width: 32px;
+      height: 32px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      transition: background 0.2s;
+    }
+
+    .header-search button:hover {
+      background: var(--green-light);
+    }
+
+    nav.secondary {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      flex: 1;
+      justify-content: flex-end;
+    }
+
+    .icon-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      transition: opacity 0.2s ease;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+      color: #1a1a1a;
+      position: relative;
+    }
+
+    .icon-btn:hover {
+      opacity: 0.7;
+    }
+
+    .icon-btn .badge-count {
+      position: absolute;
+      top: -4px;
+      right: -4px;
+      background: #a94442;
+      color: #fff;
+      font-size: 0.6rem;
+      font-weight: 700;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .profile-container {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #1a1a1a;
+      transition: color 0.2s ease;
+      cursor: pointer;
+    }
+
+    .profile-container:hover {
+      color: var(--green);
+    }
+
+    .profile-avatar svg {
+      border-radius: 50%;
+    }
+
+    /* =========================
+       MAIN CONTENT
+    ========================= */
+
+    .main-content {
+      flex: 1;
+      max-width: 1250px;
+      margin: 0 auto;
+      padding: 30px 20px 40px;
+      width: 100%;
+    }
+
+    .product-detail-layout {
+      display: flex;
+      background: #fff;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+      align-items: stretch;
+      min-height: 400px;
+    }
+
+    /* =========================
+       PRODUCT IMAGE
+    ========================= */
+
+    .product-image-side {
+      flex: 0 0 50%;
+      position: relative;
+    }
+
+    .product-image-side img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+    }
+
+    /* Photo thumbnails (shown when a product has 2+ photos) */
+    .product-thumbs {
+      position: absolute;
+      left: 16px;
+      right: 16px;
+      bottom: 16px;
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding: 2px;
+    }
+
+    .product-thumbs[hidden] { display: none; }
+
+    .product-thumb {
+      flex: 0 0 60px;
+      height: 60px;
+      padding: 0;
+      border: 2px solid rgba(255, 255, 255, 0.8);
+      border-radius: 10px;
+      overflow: hidden;
+      cursor: pointer;
+      background: #fff;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+      opacity: 0.85;
+      transition: opacity 0.15s, border-color 0.15s, transform 0.15s;
+    }
+
+    .product-thumb:hover { opacity: 1; transform: translateY(-2px); }
+
+    .product-thumb--active { border-color: #28512F; opacity: 1; }
+
+    .product-thumb:focus-visible { outline: 3px solid #fff; outline-offset: 2px; }
+
+    .product-image-side .product-thumb img {
+      width: 100%;
+      height: 100%;
+      min-height: 0;
+      object-fit: cover;
+    }
+
+    .btn-back {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(4px);
+      border: 1px solid #1A2E1F;
+      color: #1A2E1F;
+      padding: 8px 20px;
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: 0.85rem;
+      text-decoration: none;
+      transition: 0.2s;
+      z-index: 5;
+    }
+
+    .btn-back:hover {
+      background: #1A2E1F;
+      color: #fff;
+    }
+/* =========================
+   FAVORITE BUTTON
+========================= */
+
+.favorite-btn {
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: 1px solid #ddd;
+  background: rgba(255, 255, 255, 0.95);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.2s ease;
+  color: #555;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.favorite-btn:hover {
+  transform: scale(1.08);
+  border-color: #e74c3c;
+  color: #e74c3c;
+}
+
+.favorite-btn.saved {
+  background: #e74c3c;
+  border-color: #e74c3c;
+  color: #fff;
+}
+
+.favorite-btn:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+    /* =========================
+       PRODUCT INFORMATION
+    ========================= */
+
+    .product-info-side {
+      flex: 1;
+      background: #F3F4F6;
+      padding: 16px 44px 48px 44px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .detail-info {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      width: 100%;
+    }
+
+    .product-name {
+      font-family: 'Public Sans', sans-serif;
+      font-weight: 700;
+      font-size: 2rem;
+      color: #111;
+      margin: 0;
+    }
+
+    .product-price {
+      font-family: 'Public Sans', sans-serif;
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: #1A2E1F;
+    }
+
+    .detail-location {
+      font-family: 'Public Sans', sans-serif;
+      font-size: 0.95rem;
+      color: #555;
+    }
+
+    .detail-location .label {
+      font-weight: 600;
+      color: #222;
+    }
+
+    .detail-description {
+      border-top: 1px solid #e0e0e0;
+      padding-top: 14px;
+      margin-top: 4px;
+    }
+
+    .detail-description .label {
+      font-family: 'Public Sans', sans-serif;
+      font-weight: 700;
+      color: #222;
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .detail-description p {
+      font-family: 'Public Sans', sans-serif;
+      font-size: 0.95rem;
+      color: #555;
+      line-height: 1.6;
+      font-weight: 400;
+    }
+
+    /* =========================
+       STOCK
+    ========================= */
+
+    .stock-status {
+      font-family: 'Public Sans', sans-serif;
+      font-size: 0.95rem;
+      color: #2e7d32;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin: 2px 0;
+    }
+
+    .stock-status .in-stock {
+      color: #2e7d32;
+    }
+
+    .stock-status .units {
+      color: #555;
+      font-weight: 400;
+    }
+
+    /* =========================
+       QUANTITY
+    ========================= */
+
+    .quantity-selector {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin: 4px 0 8px;
+    }
+
+    .quantity-selector .qty-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 1px solid #ccc;
+      background: #fff;
+      font-size: 1.2rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #333;
+    }
+
+    .quantity-selector .qty-btn:hover {
+      border-color: #1A2E1F;
+      background: #f5f5f5;
+    }
+
+    .quantity-selector .qty-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .quantity-selector .qty-number {
+      font-family: 'Public Sans', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 600;
+      min-width: 30px;
+      text-align: center;
+      color: #111;
+    }
+
+    /* =========================
+       ACTION BUTTONS
+    ========================= */
+
+    .detail-actions {
+      display: flex;
+      gap: 14px;
+      margin-top: 8px;
+      flex-wrap: wrap;
+    }
+
+    .btn-add-cart,
+    .btn-buy-now {
+      font-family: 'Public Sans', sans-serif;
+      padding: 14px 40px;
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      flex: 1 1 auto;
+      text-align: center;
+      transition: 0.2s;
+      text-decoration: none;
+    }
+
+    .btn-add-cart {
+      background: transparent;
+      border: 2px solid #1A2E1F;
+      color: #1A2E1F;
+    }
+
+    .btn-add-cart:hover {
+      background: #1A2E1F;
+      color: #fff;
+    }
+
+    .btn-buy-now {
+      background: #1A2E1F;
+      color: #fff;
+      border: 2px solid #1A2E1F;
+    }
+
+    .btn-buy-now:hover {
+      background: #0f1f13;
+      border-color: #0f1f13;
+    }
+
+    /* =========================
+       VISIT SHOP
+    ========================= */
+
+    .btn-visit-shop {
+      display: inline-block;
+      font-family: 'Public Sans', sans-serif;
+      padding: 10px 28px;
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: 0.85rem;
+      text-decoration: none;
+      transition: 0.2s;
+      background: transparent;
+      border: 1px solid #ccc;
+      color: #555;
+      margin-top: 4px;
+      align-self: flex-start;
+    }
+
+    .btn-visit-shop:hover {
+      border-color: #1A2E1F;
+      color: #1A2E1F;
+    }
+
+    /* =========================
+       SELLER
+    ========================= */
+
+    .seller-section {
+      border-top: 1px solid #e0e0e0;
+      padding-top: 16px;
+      margin-top: 6px;
+    }
+
+    .seller-section .section-label {
+      font-family: 'Public Sans', sans-serif;
+      font-weight: 700;
+      color: #222;
+      font-size: 0.95rem;
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    .seller-profile {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .seller-avatar {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: #1A2E1F;
+      flex-shrink: 0;
+    }
+
+    .seller-name {
+      font-family: 'Public Sans', sans-serif;
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: #111;
+      display: block;
+    }
+
+    /* =========================
+       FOOTER
+    ========================= */
+
+    footer {
+      flex-shrink: 0;
+      background: var(--footer-bg);
+      padding: 60px 56px 40px;
+      width: 100%;
+    }
+
+    .footer-grid {
+      max-width: var(--max);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 0.7fr 0.7fr 0.9fr 1.5fr;
+      gap: 32px;
+      align-items: start;
+    }
+
+    .footer-brand img {
+      width: 140px;
+      height: auto;
+    }
+
+    .footer-col h4 {
+      color: var(--white);
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin: 0 0 16px;
+    }
+
+    .footer-col a,
+    .footer-col p {
+      display: block;
+      color: rgba(255, 255, 255, 0.75);
+      font-size: 0.85rem;
+      line-height: 2;
+      margin: 0;
+      transition: color 0.2s ease;
+    }
+
+    .footer-col a:hover {
+      color: var(--white);
+    }
+
+    .footer-quote {
+      padding-left: 28px;
+      border-left: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .footer-quote p {
+      color: rgba(255, 255, 255, 0.85);
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+
+    /* =========================
+       RESPONSIVE
+    ========================= */
+
+    @media (max-width: 900px) {
+
+      header {
+        flex-direction: column;
+        gap: 20px;
+        padding: 16px 24px;
+      }
+
+      .header-left {
+        width: 100%;
+        justify-content: space-between;
+        gap: 20px;
+      }
+
+      .header-search {
+        width: 100%;
+        max-width: 100%;
+        margin: 0;
+        order: 3;
+      }
+
+      nav.secondary {
+        width: 100%;
+        justify-content: center;
+        gap: 20px;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 28px;
+      }
+
+      .footer-quote {
+        grid-column: 1 / -1;
+        border-left: none;
+        padding-left: 0;
+        border-top: 1px solid rgba(255, 255, 255, 0.25);
+        padding-top: 20px;
+      }
+    }
+
+    @media (max-width: 850px) {
+
+      .product-detail-layout {
+        flex-direction: column;
+      }
+
+      .product-image-side {
+        flex: none;
+        width: 100%;
+        min-height: 250px;
+      }
+
+      .product-image-side img {
+        min-height: 250px;
+        object-fit: cover;
+      }
+
+      .product-info-side {
+        padding: 16px 24px 32px 24px;
+      }
+    }
+
+    @media (max-width: 600px) {
+
+      .product-name {
+        font-size: 1.6rem;
+      }
+
+      .product-price {
+        font-size: 1.8rem;
+      }
+
+      .detail-actions {
+        flex-direction: column;
+      }
+
+      .btn-add-cart,
+      .btn-buy-now {
+        width: 100%;
+      }
+
+      .product-info-side {
+        padding: 16px 18px 24px;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      footer {
+        padding: 40px 20px 30px;
+      }
+
+      .btn-back {
+        top: 10px;
+        left: 10px;
+        font-size: 0.75rem;
+        padding: 6px 14px;
+      }
+    }
+  </style>
+  <!-- Guests can browse; Log in / Register in the header -->
+  <script src="guest-mode.js?v=20260927d"></script>
+</head>
+
+<body>
+
+  <!-- =========================
+       HEADER
+  ========================= -->
+
+  <header>
+
+    <div class="header-left">
+
+      <a href="HOME.html" class="logo-mark" aria-label="Punlaan home">
+        <img src="Tree icon.png" alt="Punlaan logo">
+      </a>
+
+      <nav class="primary">
+
+        <a href="HOME.html">
+          <span>Home</span>
+        </a>
+
+        <a href="MARKETPLACE.html" class="active">
+          <span>Marketplace</span>
+        </a>
+
+        <a href="ABOUTUS.html">
+          <span>About Us</span>
+        </a>
+
+      </nav>
+
+    </div>
+
+
+    <!-- =========================
+         SEARCH
+    ========================= -->
+
+    <form
+      class="header-search"
+      action="MARKETPLACE.html"
+      method="GET"
+    >
+
+      <input
+        type="text"
+        name="q"
+        placeholder="Search ..."
+      >
+
+      <button type="submit">
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </button>
+
+    </form>
+
+
+    <!-- =========================
+         SECONDARY HEADER
+    ========================= -->
+
+    <nav class="secondary">
+
+      <!-- CART -->
+
+      <a
+        href="Checkout/CART.html"
+        class="icon-btn"
+        aria-label="Shopping Cart"
+      >
+
+        <i
+          class="fa-solid fa-cart-shopping"
+          style="font-size: 1.2rem;"
+        ></i>
+
+      </a>
+
+
+      <!-- WISHLIST -->
+
+<a
+  href="../MyAccount/customer/SavedPlants.html"
+  class="icon-btn"
+  aria-label="Saved Plants"
+>
+
+        <i
+          class="fa-regular fa-heart"
+          style="font-size: 1.2rem;"
+        ></i>
+
+        <span
+          class="badge-count"
+          id="wishlistBadge"
+          style="display: none;"
+        >
+          0
+        </span>
+
+      </a>
+
+
+      <!-- NOTIFICATIONS -->
+
+      <a
+        href="NOTIFICATION.html"
+        class="icon-btn"
+        aria-label="Notifications"
+      >
+
+        <i
+          class="fa-regular fa-bell"
+          style="font-size: 1.2rem;"
+        ></i>
+
+      </a>
+
+
+     <!-- =========================
+     PROFILE
+========================= -->
+
+<a
+    href="../MyAccount/customer/Profile.html"
+    class="profile-container"
+    id="profileNav"
+    aria-label="User Profile"
+>
+    <div class="profile-avatar">
+        <svg
+            width="32"
+            height="32"
+            viewBox="0 0 32 32"
+            fill="none"
+        >
+            <circle
+                cx="16"
+                cy="16"
+                r="16"
+                fill="#28512F"
+            />
+            <path
+                d="M16 15a4 4 0 100-8 4 4 0 000 8z"
+                fill="#FFFFFF"
+            />
+            <path
+                d="M16 18c-4.4 0-8 2.3-8 5v1h16v-1
+                   c0-2.7-3.6-5-8-5z"
+                fill="#FFFFFF"
+            />
+        </svg>
+    </div>
+    <!-- Logged-in user's name goes here -->
+    <span id="usernameDisplay">username</span>
+</a>
+    </nav>
+  </header>
+
+
+  <!-- =========================
+       PRODUCT DETAIL
+  ========================= -->
+
+  <main class="main-content">
+
+    <div class="product-detail-layout">
+
+
+      <!-- =========================
+           PRODUCT IMAGE
+      ========================= -->
+
+      <div class="product-image-side">
+
+        <img
+          id="productImage"
+          src="products/no_photo.jpg"
+          alt="Product image"
+        />
+
+        <!-- Other photos of this product (filled by DETAIL.js) -->
+        <div
+          class="product-thumbs"
+          id="productThumbs"
+          aria-label="Product photos"
+          hidden
+        ></div>
+
+        <a
+          href="MARKETPLACE.html"
+          class="btn-back"
+        >
+          ← Back to Catalog
+        </a>
+<button
+  type="button"
+  class="favorite-btn"
+  id="favoriteBtn"
+  aria-label="Save plant"
+  title="Save plant"
+>
+  <i class="fa-regular fa-heart"></i>
+</button>
+
+      </div>
+
+
+      <!-- =========================
+           PRODUCT INFORMATION
+      ========================= -->
+
+      <div class="product-info-side">
+
+        <div class="detail-info">
+
+
+          <!-- PRODUCT NAME -->
+
+          <h1
+            class="product-name"
+            id="productName"
+          >
+            Loading...
+          </h1>
+
+
+          <!-- PRICE -->
+
+          <div
+            class="product-price"
+            id="productPrice"
+          >
+            Loading...
+          </div>
+
+
+          <!-- STOCK -->
+
+          <div class="stock-status">
+
+            <span class="in-stock">
+              ●
+            </span>
+
+            Stock Status:
+
+            <span
+              class="in-stock"
+              id="stockStatus"
+            >
+              Loading...
+            </span>
+
+            <span
+              class="units"
+              id="stockUnits"
+            >
+              (0 units)
+            </span>
+
+          </div>
+
+
+          <!-- LOCATION -->
+
+          <div class="detail-location">
+
+            <span class="label">
+              Location:
+            </span>
+
+            <span id="productLocation">
+              Loading...
+            </span>
+
+          </div>
+
+
+          <!-- DESCRIPTION -->
+
+          <div class="detail-description">
+
+            <span class="label">
+              Description
+            </span>
+
+            <p id="productDescription">
+              Loading product description...
+            </p>
+
+          </div>
+
+
+          <!-- QUANTITY -->
+
+          <div class="quantity-selector">
+
+            <button
+              type="button"
+              class="qty-btn"
+              id="qtyMinus"
+              aria-label="Decrease quantity"
+            >
+              −
+            </button>
+
+            <span
+              class="qty-number"
+              id="qtyNumber"
+            >
+              1
+            </span>
+
+            <button
+              type="button"
+              class="qty-btn"
+              id="qtyPlus"
+              aria-label="Increase quantity"
+            >
+              +
+            </button>
+
+          </div>
+
+
+          <!-- ACTION BUTTONS -->
+
+          <div class="detail-actions">
+
+            <button
+              type="button"
+              class="btn-add-cart"
+              id="addToCart"
+            >
+              ADD TO CART
+            </button>
+
+            <button
+              type="button"
+              class="btn-buy-now"
+              id="buyNow"
+            >
+              BUY NOW
+            </button>
+
+          </div>
+
+
+          <!-- VISIT SHOP -->
+
+          <a
+            href="MARKETPLACE.html"
+            class="btn-visit-shop"
+          >
+            Visit Shop
+          </a>
+
+
+          <!-- SELLER -->
+
+          <div class="seller-section">
+
+            <span class="section-label">
+              Profile
+            </span>
+
+            <div class="seller-profile">
+
+              <div class="seller-avatar"></div>
+
+              <div class="seller-info">
+
+                <span
+                  class="seller-name"
+                  id="sellerName"
+                >
+                  Loading...
+                </span>
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+
+
+  <!-- =========================
+       FOOTER
+  ========================= -->
+
+  <footer>
+
+    <div class="footer-grid">
+
+
+      <!-- BRAND -->
+
+      <div class="footer-brand">
+
+        <img
+          src="Footer logo.png"
+          alt="Punlaan, The Green Market"
+        />
+
+      </div>
+
+
+      <!-- FOLLOW -->
+
+      <div class="footer-col">
+
+        <h4>
+          Follow us
+        </h4>
+
+        <a href="#">Facebook</a>
+
+      </div>
+
+
+      <!-- QUICK LINKS -->
+
+      <div class="footer-col">
+
+        <h4>
+          Quick Links
+        </h4>
+
+        <a href="HOME.html">Home</a>
+
+        <a href="MARKETPLACE.html">Marketplace</a>
+
+        <a href="ABOUTUS.html">About Us</a>
+                <a href="PRIVACY.html">Privacy Policy</a>
+                <a href="TERMS.html">Terms of Service</a>
+
+      </div>
+
+
+      <!-- CONTACT -->
+
+      <div class="footer-col">
+
+        <h4>
+          Contact Info
+        </h4>
+
+        <a href="#">Location</a>
+        <a href="#">Email</a>
+        <a href="#">Contact number</a>
+
+      </div>
+
+
+      <!-- QUOTE -->
+
+      <div class="footer-col footer-quote">
+
+        <p>
+          "Punlaan's overall goal is to help make buying and selling
+          plants and saplings a much more convenient and accessible
+          marketplace by giving these people a website to give them
+          a much easier access to sell and buy."
+        </p>
+
+      </div>
+
+    </div>
+
+  </footer>
+
+
+  <!-- =========================
+       DATABASE PRODUCT SCRIPT
+  ========================= -->
+
+  <script src="DETAIL.js?v=20260927d" defer></script>
+
+  <!-- Cart item count on the header cart icon -->
+  <script src="cart-badge.js?v=20260927d"></script>
+
+  <!-- Shared header: profile photo, mobile menu, search suggestions -->
+  <script src="site-header.js?v=20260927d"></script>
+
+  <!-- Ratings, reviews, Chat with seller -->
+  <script src="shop-extras.js?v=20260927sb"></script>
+</body>
+
+</html>

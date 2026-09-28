@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ABOUT US - PUNLAAN</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600&family=Public+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --green: #28512F;
+      --green-light: #3B7247;
+      --footer-bg: #1A2E1F;
+      --card-black: #0F0F0F;
+      --gray-text: #B0B0B0;
+      --white: #FFFFFF;
+      --max: 1200px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Public Sans', sans-serif;
+      color: #1a1a1a;
+      background: var(--white);
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    h1, h2, h3, h4, .wordmark {
+      font-family: 'Fraunces', serif;
+      margin: 0;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    p {
+      margin: 0;
+    }
+
+    /* HEADER - Matching HOME2 */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 56px;
+      background: var(--white);
+      border-bottom: 1px solid #eee;
+      position: sticky; 
+      top: 0;           
+      z-index: 1000;    
+      width: 100%;      
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 50px;
+      flex: 1;
+    }
+
+    .logo-mark img {
+      height: 48px;
+      width: auto;
+    }
+
+    nav.primary {
+      display: flex;
+      gap: 34px;
+    }
+
+    nav.primary a {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #1a1a1a;
+      transition: color 0.2s ease;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      padding-bottom: 6px;
+      border-bottom: 3px solid transparent;
+    }
+
+    nav.primary a.active,
+    nav.primary a:hover {
+      color: var(--green);
+      border-bottom: 3px solid var(--green);
+    }
+
+    .header-search {
+      flex: 1;
+      max-width: 550px;
+      margin: 0 30px;
+      background: #f5f5f5;
+      border-radius: 999px;
+      display: flex;
+      align-items: center;
+      padding: 4px;
+      border: 1px solid #e0e0e0;
+    }
+
+    .header-search input {
+      flex: 1;
+      border: none;
+      background: transparent;
+      padding: 6px 16px;
+      font-family: 'Public Sans', sans-serif;
+      font-size: 0.9rem;
+      color: #333;
+      outline: none;
+    }
+
+    .header-search button {
+      background: var(--green);
+      color: var(--white);
+      border: none;
+      border-radius: 999px;
+      width: 32px;
+      height: 32px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      transition: background 0.2s;
+    }
+
+    .header-search button:hover {
+      background: var(--green-light);
+    }
+
+    nav.secondary {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      flex: 1;
+      justify-content: flex-end;
+    }
+
+    .icon-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      transition: opacity 0.2s ease;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+      color: #1a1a1a;
+      position: relative;
+    }
+
+    .icon-btn:hover {
+      opacity: 0.7;
+    }
+
+    .icon-btn .badge-count {
+      position: absolute;
+      top: -4px;
+      right: -4px;
+      background: #a94442;
+      color: #fff;
+      font-size: 0.6rem;
+      font-weight: 700;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .profile-container {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #1a1a1a;
+      transition: color 0.2s ease;
+      cursor: pointer;
+    }
+
+    .profile-container:hover {
+      color: var(--green);
+    }
+
+    .profile-avatar svg {
+      border-radius: 50%;
+    }
+
+    /* About Us Page Specific Styles */
+    .about-container {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 80px 56px;
+      flex: 1;
+    }
+
+    .about-title {
+      text-align: center;
+      font-size: 3.5rem;
+      font-weight: 600;
+      color: var(--green);
+      margin-bottom: 40px;
+    }
+
+    .about-intro {
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto 70px;
+      padding-bottom: 40px;
+      border-bottom: 1px solid #e0e0e0;
+      color: #555;
+      font-size: 1.05rem;
+      line-height: 1.7;
+    }
+
+    .mission-vision-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: stretch;
+      margin-bottom: 80px;
+    }
+
+    .mv-box {
+      padding: 50px 40px;
+      text-align: center;
+    }
+
+    .mission-box {
+      background: var(--white);
+      color: #333;
+      border: 2px solid var(--green);
+    }
+
+    .vision-box {
+      background: var(--green);
+      color: var(--white);
+    }
+
+    .mv-box h2 {
+      font-family: 'Public Sans', sans-serif;
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+      letter-spacing: 0.05em;
+    }
+
+    .mv-box p {
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+
+    .mission-box h2 {
+      color: var(--green);
+    }
+
+    .vision-box h2 {
+      color: var(--white);
+    }
+
+    .vision-box p {
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    .team-section {
+      text-align: center;
+    }
+
+    .team-section h2 {
+      font-size: 2.8rem;
+      font-weight: 600;
+      color: var(--green);
+      margin-bottom: 50px;
+    }
+
+    .team-grid {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 40px;
+    }
+
+    .team-member {
+      width: 180px;
+      text-align: center;
+    }
+
+    .member-avatar {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: #ccc;
+      border: 3px solid var(--green);
+      margin: 0 auto 15px;
+    }
+
+    .team-member h3 {
+      font-family: 'Public Sans', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 5px;
+    }
+
+    .team-member p {
+      font-size: 0.75rem;
+      line-height: 1.5;
+      color: #777;
+    }
+
+    /* FOOTER - Matching HOME */
+    footer {
+      flex-shrink: 0;
+      background: var(--footer-bg);
+      padding: 60px 56px 40px;
+      width: 100%;
+    }
+
+    .footer-grid {
+      max-width: var(--max);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 0.7fr 0.7fr 0.9fr 1.5fr;
+      gap: 32px;
+      align-items: start;
+    }
+
+    .footer-brand img {
+      width: 140px;
+      height: auto;
+    }
+
+    .footer-col h4 {
+      color: var(--white);
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin: 0 0 16px;
+      font-family: 'Public Sans', sans-serif;
+    }
+
+    .footer-col a,
+    .footer-col p {
+      display: block;
+      color: rgba(255, 255, 255, 0.75);
+      font-size: 0.85rem;
+      line-height: 2;
+      margin: 0;
+      transition: color 0.2s ease;
+    }
+
+    .footer-col a:hover {
+      color: var(--white);
+    }
+
+    .footer-quote {
+      padding-left: 28px;
+      border-left: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .footer-quote p {
+      color: rgba(255, 255, 255, 0.85);
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+
+    @media (max-width: 900px) {
+      header {
+        flex-direction: column;
+        gap: 20px;
+        padding: 16px 24px;
+      }
+
+      .header-left {
+        width: 100%;
+        justify-content: space-between;
+        gap: 20px;
+      }
+
+      .header-search {
+        width: 100%;
+        max-width: 100%; 
+        margin: 0;
+        order: 3;
+      }
+
+      nav.secondary {
+        width: 100%;
+        justify-content: center;
+        gap: 20px;
+      }
+
+      .about-container {
+        padding: 60px 24px;
+      }
+
+      .mission-vision-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 28px;
+      }
+
+      .footer-quote {
+        grid-column: 1 / -1;
+        border-left: none;
+        padding-left: 0;
+        border-top: 1px solid rgba(255, 255, 255, 0.25);
+        padding-top: 20px;
+      }
+    }
+
+    @media (max-width: 550px) {
+      footer {
+        padding: 40px 20px 30px;
+      }
+      
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .about-title {
+        font-size: 2.8rem;
+      }
+    }
+  </style>
+  <!-- Guests can browse; Log in / Register in the header -->
+  <script src="guest-mode.js?v=20260927d"></script>
+</head>
+<body>
+
+  <header>
+    <div class="header-left">
+      <a href="HOME.html" class="logo-mark" aria-label="Punlaan home">
+        <img src="Tree icon.png" alt="Punlaan logo" />
+      </a>
+      <nav class="primary">
+        <a href="HOME.html"><span>Home</span></a>
+        <a href="MARKETPLACE.html"><span>Marketplace</span></a>
+        <a href="ABOUTUS.html" class="active"><span>About Us</span></a>
+      </nav>
+    </div>
+
+    <form class="header-search" action="MARKETPLACE.html" method="GET">
+      <input type="text" name="q" placeholder="Search ...">
+      <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+    </form>
+
+    <nav class="secondary">
+      <a href="Checkout/CART.html" class="icon-btn" aria-label="Shopping Cart">
+        <i class="fa-solid fa-cart-shopping" style="font-size: 1.2rem;"></i>
+        <span class="badge-count" id="cartBadge" style="display: none;">0</span>
+      </a>
+      <a
+  href="../MyAccount/customer/SavedPlants.html"
+  class="icon-btn"
+  aria-label="Saved Plants"
+>
+        <i class="fa-regular fa-heart" style="font-size: 1.2rem;"></i>
+      </a>
+      <a href="NOTIFICATION.html" class="icon-btn" aria-label="Notifications">
+        <i class="fa-regular fa-bell" style="font-size: 1.2rem;"></i>
+      </a>
+      <a href="../MyAccount/customer/Profile.html" class="profile-container" id="profileNav" aria-label="User Profile">
+        <div class="profile-avatar">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+            <circle cx="16" cy="16" r="16" fill="#28512F"/>
+            <path d="M16 15a4 4 0 100-8 4 4 0 000 8z" fill="#FFFFFF"/>
+            <path d="M16 18c-4.4 0-8 2.3-8 5v1h16v-1c0-2.7-3.6-5-8-5z" fill="#FFFFFF"/>
+          </svg>
+        </div>
+        <span>username</span>
+      </a>
+    </nav>
+  </header>
+
+  <main class="about-container">
+    <h1 class="about-title">ABOUT US</h1>
+
+    <div class="about-intro">
+      <p>
+        Punlaan is a web-based e-commerce marketplace designed for the buying and selling of plants in the Philippines. 
+        The platform enables multiple plant sellers to create and manage their own online stores while allowing customers 
+        to conveniently browse, compare, and purchase a wide variety of seedlings, bushes, and saplings from a single website. 
+        By bringing buyers and sellers together in one centralized marketplace, Punlaan provides an organized, accessible, 
+        and user-friendly shopping experience that simplifies plant discovery, promotes transparent pricing, and supports 
+        the growth of local plant businesses.
+      </p>
+    </div>
+
+    <div class="mission-vision-grid">
+      <div class="mv-box mission-box">
+        <h2>MISSION</h2>
+        <p>
+          Punlaan's overall goal is to help make buying and selling plants and saplings a much more convenient and 
+          accessible marketplace by giving these people a website to give them a much easier access to sell and buy.
+        </p>
+      </div>
+      <div class="mv-box vision-box">
+        <h2>VISION</h2>
+        <p>
+          To become the leading online marketplace for plants in the Philippines, empowering local growers and 
+          connecting communities through sustainable agriculture and accessible green commerce.
+        </p>
+      </div>
+    </div>
+
+    <section class="team-section">
+      <h2>MEET THE TEAM</h2>
+      <div class="team-grid">
+        <div class="team-member">
+          <div class="member-avatar"></div>
+          <h3>Tan, Jade T.</h3>
+        </div>
+        <div class="team-member">
+          <div class="member-avatar"></div>
+          <h3>Ambrosio, Nathaniel</h3>
+        </div>
+        <div class="team-member">
+          <div class="member-avatar"></div>
+          <h3>Bayhon, Jonathan S.</h3>
+        </div>
+        <div class="team-member">
+          <div class="member-avatar"></div>
+          <h3>Tañala, Lance Christian M.</h3>
+        </div>
+        <div class="team-member">
+          <div class="member-avatar"></div>
+          <h3>Uy, Jastin D.</h3>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="Footer logo.png" alt="Punlaan, The Green Market" />
+      </div>
+      <div class="footer-col">
+        <h4>Follow us</h4>
+        <a href="#">Facebook</a>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <a href="HOME.html">Home</a>
+        <a href="MARKETPLACE.html">Marketplace</a>
+        <a href="ABOUTUS.html">About Us</a>
+                <a href="PRIVACY.html">Privacy Policy</a>
+                <a href="TERMS.html">Terms of Service</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contact Info</h4>
+        <a href="#">Location</a>
+        <a href="#">Email</a>
+        <a href="#">Contact number</a>
+      </div>
+      <div class="footer-col footer-quote">
+        <p>"Punlaan's overall goal is to help make buying and selling plants and saplings a much more convenient and accessible marketplace by giving these people a website to give them a much easier access to sell and buy."</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Cart item count on the header cart icon -->
+  <script src="cart-badge.js?v=20260927d"></script>
+
+  <!-- Shared header: profile photo, mobile menu, search suggestions -->
+  <script src="site-header.js?v=20260927d"></script>
+</body>
+</html>

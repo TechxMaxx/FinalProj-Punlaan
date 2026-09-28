@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Plant Market — Business & Customer Hub</title>
+
+  <style>
+
+    body {
+
+      font-family: Arial, sans-serif;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      min-height: 100vh;
+
+      margin: 0;
+
+      background: #f6faf7;
+
+      color: #1a3c2e;
+
+    }
+
+    .redirect-card {
+
+      text-align: center;
+
+      padding: 40px;
+
+    }
+
+    .redirect-card h1 {
+
+      font-size: 22px;
+
+      margin-bottom: 8px;
+
+    }
+
+    .redirect-card p {
+
+      font-size: 14px;
+
+      color: #8aa596;
+
+    }
+
+  </style>
+
+</head>
+
+
+<body>
+
+  <div class="redirect-card">
+
+    <h1>Punlaan</h1>
+
+    <p id="redirectMessage">
+      Checking your account...
+    </p>
+
+  </div>
+
+
+  <script>
+
+    async function redirectUser() {
+
+      const message =
+        document.getElementById(
+          "redirectMessage"
+        );
+
+
+      try {
+
+        const response =
+          await fetch(
+            "../register/current_user.php?check=" +
+            Date.now(),
+            {
+              method: "GET",
+              credentials: "include",
+              cache: "no-store"
+            }
+          );
+
+
+        if (!response.ok) {
+
+          throw new Error(
+            "Server returned " +
+            response.status
+          );
+
+        }
+
+
+        const result =
+          await response.json();
+
+
+        console.log(
+          "MyAccount session result:",
+          result
+        );
+
+
+        /* =====================================================
+           NOT LOGGED IN
+        ===================================================== */
+
+        if (
+          result.success !== true ||
+          result.logged_in !== true
+        ) {
+
+          console.log(
+            "No active login. Sending to Login.html."
+          );
+
+
+          window.location.replace(
+            "../register/Login.html"
+          );
+
+
+          return;
+
+        }
+
+
+        /* =====================================================
+           USER EXISTS
+        ===================================================== */
+
+        const user =
+          result.user;
+
+
+        if (!user) {
+
+          window.location.replace(
+            "../register/Login.html"
+          );
+
+
+          return;
+
+        }
+
+
+        console.log(
+          "MyAccount user:",
+          user
+        );
+
+
+        /* =====================================================
+           VENDOR
+        ===================================================== */
+
+        if (
+          Number(user.is_vendor) === 1
+        ) {
+
+          message.textContent =
+            "Opening your vendor dashboard...";
+
+
+          window.location.replace(
+            "vendor/Inventory.html"
+          );
+
+
+          return;
+
+        }
+
+
+        /* =====================================================
+           CUSTOMER
+        ===================================================== */
+
+        message.textContent =
+          "Opening your customer orders...";
+
+
+        window.location.replace(
+          "customer/MyOrders.html"
+        );
+
+      }
+
+
+      catch (error) {
+
+        console.error(
+          "Could not determine current user:",
+          error
+        );
+
+
+        /*
+         * Session check failed.
+         * Treat it as not logged in.
+         */
+
+        window.location.replace(
+          "../register/Login.html"
+        );
+
+      }
+
+    }
+
+
+    /* =========================================================
+       START
+    ========================================================= */
+
+    redirectUser();
+
+  </script>
+
+</body>
+
+</html>

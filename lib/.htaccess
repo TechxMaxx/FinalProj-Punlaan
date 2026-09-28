@@ -1,0 +1,9 @@
+# lib/ holds shared PHP code that other pages include.
+# Nothing here is opened directly in the browser.
+<IfModule mod_authz_core.c>
+    Require all denied
+</IfModule>
+<IfModule !mod_authz_core.c>
+    Order allow,deny
+    Deny from all
+</IfModule>

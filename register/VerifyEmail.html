@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Verify your email — Punlaan</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="account.css?v=20260927d" />
+  <script src="auth-transition.js?v=20260927d"></script>
+</head>
+<body>
+
+  <div class="auth-layout">
+
+    <!-- Left panel — brand / hero -->
+    <div class="auth-panel auth-panel--hero">
+      <div class="hero-inner">
+        <a href="../FrontEnd/HOME.html" class="hero-brand" aria-label="Punlaan home">
+          <div class="hero-brand__icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6"/></svg>
+          </div>
+          <span class="hero-brand__name">Punlaan</span>
+        </a>
+        <div class="hero-content">
+          <h1 class="hero-title">One last<br />step.</h1>
+          <p class="hero-sub">We check every email so orders, receipts and messages reach the right person.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right panel — code -->
+    <div class="auth-panel auth-panel--form">
+      <div class="form-panel verify-panel">
+
+        <a href="../FrontEnd/HOME.html" class="form-brand" aria-label="Punlaan home">
+          <div class="form-brand__icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6"/></svg>
+          </div>
+          <span class="form-brand__name">Punlaan</span>
+        </a>
+
+        <div class="verify-icon" aria-hidden="true">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+        </div>
+
+        <div class="form-panel__header verify-header">
+          <h2 class="form-panel__title">Verify your email</h2>
+          <p class="form-panel__sub" id="verifySub">Enter the 6-digit code we sent to<br><strong id="verifyEmail">your email</strong></p>
+        </div>
+
+        <form class="auth-form" id="verifyForm" autocomplete="off">
+          <div class="code-boxes" id="codeBoxes" role="group" aria-label="6-digit code">
+            <input class="code-box" inputmode="numeric" maxlength="1" aria-label="Digit 1" autocomplete="one-time-code" />
+            <input class="code-box" inputmode="numeric" maxlength="1" aria-label="Digit 2" />
+            <input class="code-box" inputmode="numeric" maxlength="1" aria-label="Digit 3" />
+            <input class="code-box" inputmode="numeric" maxlength="1" aria-label="Digit 4" />
+            <input class="code-box" inputmode="numeric" maxlength="1" aria-label="Digit 5" />
+            <input class="code-box" inputmode="numeric" maxlength="1" aria-label="Digit 6" />
+          </div>
+
+          <div class="auth-error" id="verifyError" role="alert" hidden></div>
+          <div class="verify-ok" id="verifyOk" role="status" hidden></div>
+
+          <button type="submit" class="auth-btn auth-btn--primary" id="verifyBtn" disabled>
+            <span class="auth-btn__text">Verify and continue</span>
+            <span class="auth-btn__loader" hidden>
+              <svg class="spin" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+            </span>
+          </button>
+        </form>
+
+        <div class="verify-resend">
+          <p>Didn't receive the code? Check your Spam folder, or</p>
+          <button type="button" id="resendBtn" class="verify-resend__btn" disabled>Resend code</button>
+        </div>
+
+        <p class="auth-switch">
+          <button type="button" id="cancelBtn" class="verify-cancel">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" x2="9" y1="12" y2="12"/></svg>
+            Use a different account
+          </button>
+        </p>
+
+      </div>
+    </div>
+
+  </div>
+
+  <div id="toast" class="toast"></div>
+  <script src="account.js?v=20260927d"></script>
+  <script src="verify-email.js?v=20260927d"></script>
+</body>
+</html>

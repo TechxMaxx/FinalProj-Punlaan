@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>MARKETPLACE</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600&family=Public+Sans:wght@300;400;600;700&display=swap"
+        rel="stylesheet"
+    />
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <link rel="stylesheet" href="MARKETPLACE.css?v=20260927e" />
+  <!-- Guests can browse; Log in / Register in the header -->
+  <script src="guest-mode.js?v=20260927d"></script>
+</head>
+
+<body>
+
+    <!-- ==================== HEADER ==================== -->
+    <header>
+
+        <div class="header-left">
+
+            <a href="HOME.html" class="logo-mark" aria-label="Punlaan home">
+                <img src="Tree icon.png" alt="Punlaan logo" />
+            </a>
+
+            <nav class="primary">
+                <a href="HOME.html">
+                    <span>Home</span>
+                </a>
+
+                <a href="MARKETPLACE.html" class="active">
+                    <span>Marketplace</span>
+                </a>
+
+                <a href="ABOUTUS.html">
+                    <span>About Us</span>
+                </a>
+            </nav>
+
+        </div>
+
+
+        <!-- ==================== SEARCH ==================== -->
+        <form
+            class="header-search"
+            action="MARKETPLACE.html"
+            method="GET"
+        >
+            <input
+                type="text"
+                name="q"
+                placeholder="Search ..."
+            >
+
+            <button type="submit">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+        </form>
+
+
+        <!-- ==================== SECONDARY NAV ==================== -->
+        <nav class="secondary">
+
+            <!-- Cart -->
+            <a
+                href="Checkout/CART.html"
+                class="icon-btn"
+                aria-label="Shopping Cart"
+            >
+                <i
+                    class="fa-solid fa-cart-shopping"
+                    style="font-size: 1.2rem;"
+                ></i>
+            </a>
+
+
+            <!-- Saved Plants -->
+            <a
+                href="../MyAccount/customer/SavedPlants.html"
+                class="icon-btn"
+                aria-label="Saved Plants"
+            >
+                <i
+                    class="fa-regular fa-heart"
+                    style="font-size: 1.2rem;"
+                ></i>
+            </a>
+
+
+            <!-- Notifications -->
+            <a
+                href="NOTIFICATION.html"
+                class="icon-btn"
+                aria-label="Notifications"
+            >
+                <i
+                    class="fa-regular fa-bell"
+                    style="font-size: 1.2rem;"
+                ></i>
+            </a>
+
+
+            <!-- Profile -->
+            <a
+                href="../MyAccount/customer/Profile.html"
+                class="profile-container"
+                id="profileNav"
+                aria-label="User Profile"
+            >
+
+                <div class="profile-avatar">
+
+                    <svg
+                        width="32"
+                        height="32"
+                        viewBox="0 0 32 32"
+                        fill="none"
+                    >
+                        <circle
+                            cx="16"
+                            cy="16"
+                            r="16"
+                            fill="#28512F"
+                        />
+
+                        <path
+                            d="M16 15a4 4 0 100-8 4 4 0 000 8z"
+                            fill="#FFFFFF"
+                        />
+
+                        <path
+                            d="M16 18c-4.4 0-8 2.3-8 5v1h16v-1c0-2.7-3.6-5-8-5z"
+                            fill="#FFFFFF"
+                        />
+                    </svg>
+
+                </div>
+
+                <!-- JavaScript changes this -->
+                <span id="usernameDisplay">username</span>
+
+            </a>
+
+        </nav>
+
+    </header>
+
+
+    <!-- ==================== CATALOG WRAPPER ==================== -->
+    <div class="catalog-wrapper">
+
+        <aside class="catalog-sidebar">
+
+            <h3>
+                <span>☰</span>
+                All Categories
+            </h3>
+
+
+            <ul
+                class="sidebar-nav"
+                id="sidebarNav"
+            >
+
+                <!-- ==================== ALL PRODUCTS ==================== -->
+                <li class="sidebar-category">
+
+                    <button
+                        class="parent-btn"
+                        data-group="all"
+                    >
+                        All Products
+                    </button>
+
+                </li>
+
+
+                <!-- ==================== SEEDLINGS ==================== -->
+                <li class="sidebar-category">
+
+                    <button
+                        class="parent-btn"
+                        data-group="seedlings"
+                    >
+                        Category 1: Seedlings
+                    </button>
+
+                    <ul class="sidebar-subnav">
+
+                        <li>
+                            <button
+                                class="sub-btn active"
+                                data-target="veg-seedlings"
+                            >
+                                Vegetable Seedlings
+                            </button>
+                        </li>
+
+                        <li>
+                            <button
+                                class="sub-btn"
+                                data-target="fruit-seedlings"
+                            >
+                                Fruit Seedlings
+                            </button>
+                        </li>
+
+                        <li>
+                            <button
+                                class="sub-btn"
+                                data-target="herb-seedlings"
+                            >
+                                Herb &amp; Culinary Seedlings
+                            </button>
+                        </li>
+
+                    </ul>
+
+                </li>
+
+
+                <!-- ==================== BUSHES ==================== -->
+                <li class="sidebar-category">
+
+                    <button
+                        class="parent-btn"
+                        data-group="bushes"
+                    >
+                        Category 2: Bushes
+                    </button>
+
+                    <ul class="sidebar-subnav">
+
+                        <li>
+                            <button
+                                class="sub-btn"
+                                data-target="flowering-bushes"
+                            >
+                                Flowering Bushes
+                            </button>
+                        </li>
+
+                        <li>
+                            <button
+                                class="sub-btn"
+                                data-target="ornamental-bushes"
+                            >
+                                Ornamental Bushes
+                            </button>
+                        </li>
+
+                        <li>
+                            <button
+                                class="sub-btn"
+                                data-target="landscaping-bushes"
+                            >
+                                Landscaping Bushes
+                            </button>
+                        </li>
+
+                    </ul>
+
+                </li>
+
+
+                <!-- ==================== SAPLINGS ==================== -->
+                <li class="sidebar-category">
+
+                    <button
+                        class="parent-btn"
+                        data-group="saplings"
+                    >
+                        Category 3: Saplings
+                    </button>
+
+                    <ul class="sidebar-subnav">
+
+                        <li>
+                            <button
+                                class="sub-btn"
+                                data-target="fruit-saplings"
+                            >
+                                Fruit Tree Saplings
+                            </button>
+                        </li>
+
+                        <li>
+                            <button
+                                class="sub-btn"
+                                data-target="native-saplings"
+                            >
+                                Native Tree Saplings
+                            </button>
+                        </li>
+
+                        <li>
+                            <button
+                                class="sub-btn"
+                                data-target="shade-saplings"
+                            >
+                                Shade &amp; Ornamental Tree Saplings
+                            </button>
+                        </li>
+
+                    </ul>
+
+                </li>
+
+
+                <!-- ==================== GARDEN SUPPLIES ==================== -->
+                <li class="sidebar-category">
+
+                    <button
+                        class="parent-btn"
+                        data-group="supplies"
+                    >
+                        Category 4: Garden Supplies
+                    </button>
+
+                    <ul class="sidebar-subnav">
+
+                        <li>
+                            <button
+                                class="sub-btn"
+                                data-target="fertilizers-soil"
+                            >
+                                Fertilizers &amp; Soil
+                            </button>
+                        </li>
+
+                        <li>
+                            <button
+                                class="sub-btn"
+                                data-target="tools-pots"
+                            >
+                                Garden Tools &amp; Pots
+                            </button>
+                        </li>
+
+                    </ul>
+
+                </li>
+
+            </ul>
+
+        </aside>
+
+
+        <!-- ==================== PRODUCTS ==================== -->
+        <main class="catalog-main">
+
+            <h2
+                class="category-title"
+                id="activeCategoryTitle"
+            >
+                All Products
+            </h2>
+
+            <div
+                class="product-grid"
+                id="productGrid"
+            >
+                <!-- Products loaded by JavaScript -->
+            </div>
+
+        </main>
+
+    </div>
+
+
+    <div class="divider"></div>
+
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer>
+
+        <div class="footer-grid">
+
+            <div class="footer-brand">
+                <img
+                    src="Footer logo.png"
+                    alt="Punlaan, The Green Market"
+                />
+            </div>
+
+
+            <div class="footer-col">
+
+                <h4>Follow us</h4>
+
+                <a href="#">Facebook</a>
+
+            </div>
+
+
+            <div class="footer-col">
+
+                <h4>Quick Links</h4>
+
+                <a href="HOME.html">Home</a>
+                <a href="MARKETPLACE.html">Marketplace</a>
+                <a href="ABOUTUS.html">About Us</a>
+                <a href="PRIVACY.html">Privacy Policy</a>
+                <a href="TERMS.html">Terms of Service</a>
+
+            </div>
+
+
+            <div class="footer-col">
+
+                <h4>Contact Info</h4>
+
+                <a href="#">Location</a>
+        <a href="#">Email</a>
+        <a href="#">Contact number</a>
+
+            </div>
+
+
+            <div class="footer-col footer-quote">
+
+                <p>
+                    "Punlaan's overall goal is to help make buying
+                    and selling plants and saplings a much more
+                    convenient and accessible marketplace by giving
+                    these people a website to give them a much easier
+                    access to sell and buy."
+                </p>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+    <!-- ==================== JAVASCRIPT ==================== -->
+    <script src="MARKETPLACE.js?v=20260927e"></script>
+
+  <!-- Cart item count on the header cart icon -->
+  <script src="cart-badge.js?v=20260927d"></script>
+
+  <!-- Shared header: profile photo, mobile menu, search suggestions -->
+  <script src="site-header.js?v=20260927d"></script>
+</body>
+</html>
